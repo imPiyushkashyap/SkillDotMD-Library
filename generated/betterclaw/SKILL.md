@@ -3,10 +3,10 @@ name: betterclaw
 description: Use this skill when working with the betterclaw library. Triggers when user mentions betterclaw or imports from it.
 ---
 
-# Betterclaw
+# BetterClaw
 
 ## What this is
-Betterclaw is a Python library used for web scraping and data extraction. It provides a simple and efficient way to scrape websites and extract relevant data. Betterclaw is built on top of other popular web scraping libraries, making it a powerful tool for data extraction tasks.
+BetterClaw is a Python library used for web scraping and data extraction. It provides an efficient and easy-to-use way to extract data from websites. BetterClaw is designed to handle common web scraping tasks, such as handling different types of content, rotating user agents, and avoiding anti-scraping measures.
 
 ## Installation
 ```bash
@@ -14,34 +14,40 @@ pip install betterclaw
 ```
 
 ## Key concepts
-The most important APIs and patterns in betterclaw include:
-* `betterclawScraper`: The main class used for scraping websites. It takes a URL as input and returns a response object.
-* `betterclawParser`: A class used for parsing HTML content. It provides methods for extracting data from HTML elements.
-* `betterclawExtractor`: A class used for extracting specific data from a webpage. It provides methods for extracting data based on CSS selectors or XPath expressions.
+The most important APIs and patterns in BetterClaw include:
+- `betterclaw.Client`: The main entry point for making HTTP requests and extracting data.
+- `betterclaw.Parser`: Used to parse HTML and XML content.
+- `betterclaw.RotationPolicy`: Defines how user agents are rotated to avoid anti-scraping measures.
+
+Example:
+```python
+from betterclaw import Client
+
+client = Client()
+response = client.get("https://www.example.com")
+print(response.text)
+```
 
 ## Correct usage patterns
-Here is an example of how to use betterclaw to scrape a website:
+When using BetterClaw, make sure to handle exceptions and errors properly:
 ```python
-from betterclaw import betterclawScraper
+from betterclaw import Client
+from betterclaw.exceptions import RequestException
 
-scraper = betterclawScraper("https://www.example.com")
-response = scraper.scrape()
-print(response.html)
-```
-Another example of how to use betterclaw to extract data from a webpage:
-```python
-from betterclaw import betterclawExtractor
-
-extractor = betterclawExtractor("https://www.example.com")
-data = extractor.extract(".class-name")
-print(data)
+client = Client()
+try:
+    response = client.get("https://www.example.com")
+    print(response.text)
+except RequestException as e:
+    print(f"An error occurred: {e}")
 ```
 
 ## Common mistakes to avoid
-Common mistakes to avoid when using betterclaw include:
-* Not checking the response status code before parsing the HTML content.
-* Not handling exceptions properly, such as connection errors or parsing errors.
-* Not respecting website terms of use and scraping policies.
+- Not handling exceptions and errors properly
+- Not rotating user agents, leading to IP blocks
+- Not checking the library's documentation for updates and changes
 
 ## File and folder conventions
-Betterclaw projects typically follow standard Python project conventions. The main script should be named `main.py` and should live in the root of the project directory. Configuration files should be named `config.py` and should live in the root of the project directory. Data files should be stored in a `data` directory.
+- Configuration files should be named `betterclaw.cfg` and placed in the root directory of the project.
+- Log files should be named `betterclaw.log` and placed in the `logs` directory.
+- User-defined parsers and rotation policies should be placed in separate modules and imported as needed.
