@@ -6,7 +6,7 @@ description: Use this skill when working with MOSS-TTS-Nano. Triggers when user 
 # MOSS-TTS-Nano
 
 ## What this is
-MOSS-TTS-Nano is a lightweight text-to-speech (TTS) system developed by OpenMOSS. It is designed to provide a compact and efficient TTS solution for various applications. MOSS-TTS-Nano supports multiple languages and can be easily integrated into different projects.
+MOSS-TTS-Nano is a lightweight text-to-speech (TTS) system. It is designed to be compact and efficient, making it suitable for resource-constrained devices. MOSS-TTS-Nano provides a simple and easy-to-use API for generating high-quality speech synthesis.
 
 ## Installation
 ```bash
@@ -14,38 +14,37 @@ pip install moss-tts-nano
 ```
 
 ## Key concepts
-The most important APIs and patterns in MOSS-TTS-Nano include:
-* `TTS` class: The main class for text-to-speech conversion.
-* `synthesize` method: This method takes a text string as input and returns the corresponding audio waveform.
-* `save` method: This method saves the audio waveform to a file.
-
-Example:
+The most important APIs in MOSS-TTS-Nano include the `TTS` class, which provides methods for generating speech synthesis. For example:
 ```python
 from moss_tts import TTS
 
 tts = TTS()
-audio = tts.synthesize("Hello, world!")
-tts.save(audio, "hello.wav")
+audio = tts('Hello, world!')
 ```
+This code creates a `TTS` object and uses it to generate an audio clip for the text "Hello, world!".
 
 ## Correct usage patterns
-To use MOSS-TTS-Nano, create an instance of the `TTS` class and call the `synthesize` method with the desired text. Then, use the `save` method to save the audio waveform to a file.
+To use MOSS-TTS-Nano, you can follow these examples:
 ```python
 from moss_tts import TTS
 
-def text_to_speech(text, filename):
-    tts = TTS()
-    audio = tts.synthesize(text)
-    tts.save(audio, filename)
+# Create a TTS object
+tts = TTS()
 
-text_to_speech("Hello, this is a test.", "test.wav")
+# Generate speech synthesis for a given text
+audio = tts('Hello, world!')
+
+# Save the audio to a file
+audio.save('hello.wav')
 ```
+This code demonstrates how to create a `TTS` object, generate speech synthesis for a given text, and save the resulting audio to a file.
 
 ## Common mistakes to avoid
-Common mistakes when using MOSS-TTS-Nano include:
-* Forgetting to install the required dependencies.
-* Not checking the language support for the desired language.
-* Not handling exceptions properly.
+One common mistake to avoid when using MOSS-TTS-Nano is not handling exceptions properly. For example, if the `TTS` object is not properly initialized, it may raise an exception when trying to generate speech synthesis. To avoid this, you can use try-except blocks to catch and handle any exceptions that may occur.
 
 ## File and folder conventions
-MOSS-TTS-Nano follows standard Python package conventions. The main package is named `moss_tts`, and the `TTS` class is located in the `moss_tts` module. Configuration files should be placed in the same directory as the Python script using MOSS-TTS-Nano.
+MOSS-TTS-Nano uses the following file and folder conventions:
+* The `moss_tts` package contains the main API classes and functions.
+* The `models` folder contains pre-trained models for speech synthesis.
+* The `utils` folder contains utility functions for tasks such as audio processing.
+* Configuration files are typically stored in the `config` folder.
