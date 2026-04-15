@@ -1,0 +1,1 @@
+It seems there is no documentation provided. Please provide the documentation content for me to generate the SKILL.md file. I will follow the exact format and create a complete SKILL.md based on the provided documentation.
